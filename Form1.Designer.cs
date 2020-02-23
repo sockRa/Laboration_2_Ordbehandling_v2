@@ -123,6 +123,9 @@
 			this.richTextBox1.TabIndex = 1;
 			this.richTextBox1.Text = "";
 			this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
+			this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.RichTextBox1_DragEnter);
+			this.richTextBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.RichTextBox1_DragDrop);
+				
 			// 
 			// flowLayoutPanel1
 			// 

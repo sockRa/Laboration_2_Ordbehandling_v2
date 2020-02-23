@@ -27,6 +27,9 @@ namespace Laboration_2_Ordbehandling_v2
 			RichText = richTextBox1;
 			MainForm1 = form1;
 
+			//Allow drag and drop into the rich text box
+			RichText.AllowDrop = true;
+
 			SaveWereCanceled = false;
 
 			_openDialog = new OpenFileDialog();
@@ -147,6 +150,9 @@ namespace Laboration_2_Ordbehandling_v2
 			_documentHaveBeenChanged = false;
 
 			_importedDocument = true;
+
+			//Place cursor at the end of the file
+			RichText.SelectionStart = RichText.Text.Length;
 		}
 
 		private void SetDocumentTitle(string filePath)
@@ -228,6 +234,48 @@ namespace Laboration_2_Ordbehandling_v2
 			MainForm1.num_letters_no_space.Text = letter.ToString();
 			MainForm1.num_rows.Text = row.ToString();
 			MainForm1.num_words.Text = word.ToString();
+		}
+
+		public void RetrieveDropText(string filePath)
+		{
+			var documentText = File.ReadAllText(filePath);
+
+			switch (Control.ModifierKeys)
+			{
+				case Keys.Control:
+					RichText.AppendText(documentText);
+					break;
+
+				case Keys.Shift:
+					//Find the index where the cursor is located
+					var i = RichText.SelectionStart;
+					//Save everything after the selection in sub string.
+					var subString = RichText.Text.Substring(i);
+
+					//Set the text to everything from 0 to the cursor selection
+					RichText.Text = RichText.Text.Substring(0, i);
+
+					//Stitch everything together
+					RichText.Text = documentText + subString;
+					break;
+
+				default:
+					if (_documentHaveBeenChanged)
+					{
+						SaveDocument();
+					}
+
+					//Abort if the save were canceled
+					if (SaveWereCanceled) return;
+
+					RichText.Text = documentText;
+					SetDocumentTitle(Path.GetFileName(filePath));
+					CurrentFilePath = filePath;
+					break;
+			}
+
+			//Place cursor at the end of the file
+			RichText.SelectionStart = RichText.Text.Length;
 		}
 	}
 }

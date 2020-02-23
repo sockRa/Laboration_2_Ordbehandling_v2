@@ -56,5 +56,20 @@ namespace Laboration_2_Ordbehandling_v2
 		{
 			_dockHandler.ApplicationIsClosing(e);
 		}
+
+		private void RichTextBox1_DragEnter(object sender, DragEventArgs e)
+		{
+			e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
+		}
+
+		private void RichTextBox1_DragDrop(object sender, DragEventArgs e)
+		{
+			var file = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+			if (file == null) throw new ArgumentNullException(nameof(file));
+
+			//We only handle one drag and drop file
+			_dockHandler.RetrieveDropText(file[0]);
+		}
 	}
 }
