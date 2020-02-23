@@ -189,5 +189,45 @@ namespace Laboration_2_Ordbehandling_v2
 				e.Cancel = true;
 			}
 		}
+
+		public void UpdateInformationTable()
+		{
+			if (RichText == null) return;
+
+			int word = 0, letter = 0, row = 1;
+			var newWord = true;
+
+			foreach (var character in RichText.Text)
+			{
+				switch (character)
+				{
+					case ' ':
+						//New word have been encountered.
+						newWord = true;
+						break;
+
+					case '\n':
+						//Row have been encountered
+						row++;
+						break;
+
+					default:
+						if (newWord)
+						{
+							word++;
+							newWord = false;
+						}
+
+						letter++;
+						break;
+				}
+			}
+
+			//It is assumed that space is a character
+			MainForm1.num_letters.Text = RichText.Text.Length.ToString();
+			MainForm1.num_letters_no_space.Text = letter.ToString();
+			MainForm1.num_rows.Text = row.ToString();
+			MainForm1.num_words.Text = word.ToString();
+		}
 	}
 }

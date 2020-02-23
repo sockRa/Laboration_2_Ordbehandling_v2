@@ -39,13 +39,13 @@
 			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
+			this.num_letters = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.num_letters_no_space = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
+			this.num_words = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
+			this.num_rows = new System.Windows.Forms.Label();
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.toolStrip1.SuspendLayout();
@@ -81,35 +81,35 @@
 			// nyToolStripMenuItem
 			// 
 			this.nyToolStripMenuItem.Name = "nyToolStripMenuItem";
-			this.nyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.nyToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.nyToolStripMenuItem.Text = "Ny";
 			this.nyToolStripMenuItem.Click += new System.EventHandler(this.NyToolStripMenuItem_Click);
 			// 
 			// öppnaToolStripMenuItem
 			// 
 			this.öppnaToolStripMenuItem.Name = "öppnaToolStripMenuItem";
-			this.öppnaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.öppnaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.öppnaToolStripMenuItem.Text = "Öppna";
 			this.öppnaToolStripMenuItem.Click += new System.EventHandler(this.ÖppnaToolStripMenuItem_Click);
 			// 
 			// sparaToolStripMenuItem
 			// 
 			this.sparaToolStripMenuItem.Name = "sparaToolStripMenuItem";
-			this.sparaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.sparaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.sparaToolStripMenuItem.Text = "Spara";
 			this.sparaToolStripMenuItem.Click += new System.EventHandler(this.SparaToolStripMenuItem_Click);
 			// 
 			// sparaSomToolStripMenuItem
 			// 
 			this.sparaSomToolStripMenuItem.Name = "sparaSomToolStripMenuItem";
-			this.sparaSomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.sparaSomToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.sparaSomToolStripMenuItem.Text = "Spara som...";
 			this.sparaSomToolStripMenuItem.Click += new System.EventHandler(this.SparaSomToolStripMenuItem_Click);
 			// 
 			// stängToolStripMenuItem
 			// 
 			this.stängToolStripMenuItem.Name = "stängToolStripMenuItem";
-			this.stängToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.stängToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
 			this.stängToolStripMenuItem.Text = "Stäng";
 			this.stängToolStripMenuItem.Click += new System.EventHandler(this.StängToolStripMenuItem_Click);
 			// 
@@ -127,13 +127,13 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Controls.Add(this.label1);
-			this.flowLayoutPanel1.Controls.Add(this.label2);
+			this.flowLayoutPanel1.Controls.Add(this.num_letters);
 			this.flowLayoutPanel1.Controls.Add(this.label3);
-			this.flowLayoutPanel1.Controls.Add(this.label4);
+			this.flowLayoutPanel1.Controls.Add(this.num_letters_no_space);
 			this.flowLayoutPanel1.Controls.Add(this.label5);
-			this.flowLayoutPanel1.Controls.Add(this.label6);
+			this.flowLayoutPanel1.Controls.Add(this.num_words);
 			this.flowLayoutPanel1.Controls.Add(this.label7);
-			this.flowLayoutPanel1.Controls.Add(this.label8);
+			this.flowLayoutPanel1.Controls.Add(this.num_rows);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 451);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -150,15 +150,15 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Bokstäver:";
 			// 
-			// label2
+			// num_letters
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(72, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(14, 15);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "0";
+			this.num_letters.AutoSize = true;
+			this.num_letters.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.num_letters.Location = new System.Drawing.Point(72, 0);
+			this.num_letters.Name = "num_letters";
+			this.num_letters.Size = new System.Drawing.Size(14, 15);
+			this.num_letters.TabIndex = 1;
+			this.num_letters.Text = "0";
 			// 
 			// label3
 			// 
@@ -170,15 +170,15 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Bokstäver (utan space):";
 			// 
-			// label4
+			// num_letters_no_space
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(232, 0);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(14, 15);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "0";
+			this.num_letters_no_space.AutoSize = true;
+			this.num_letters_no_space.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.num_letters_no_space.Location = new System.Drawing.Point(232, 0);
+			this.num_letters_no_space.Name = "num_letters_no_space";
+			this.num_letters_no_space.Size = new System.Drawing.Size(14, 15);
+			this.num_letters_no_space.TabIndex = 3;
+			this.num_letters_no_space.Text = "0";
 			// 
 			// label5
 			// 
@@ -190,15 +190,15 @@
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Ord:";
 			// 
-			// label6
+			// num_words
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(288, 0);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(14, 15);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "0";
+			this.num_words.AutoSize = true;
+			this.num_words.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.num_words.Location = new System.Drawing.Point(288, 0);
+			this.num_words.Name = "num_words";
+			this.num_words.Size = new System.Drawing.Size(14, 15);
+			this.num_words.TabIndex = 5;
+			this.num_words.Text = "0";
 			// 
 			// label7
 			// 
@@ -210,18 +210,15 @@
 			this.label7.TabIndex = 6;
 			this.label7.Text = "Rader:";
 			// 
-			// label8
+			// num_rows
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(358, 0);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(14, 15);
-			this.label8.TabIndex = 7;
-			this.label8.Text = "0";
-			// 
-			// saveFileDialog1
-			// 
+			this.num_rows.AutoSize = true;
+			this.num_rows.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.num_rows.Location = new System.Drawing.Point(358, 0);
+			this.num_rows.Name = "num_rows";
+			this.num_rows.Size = new System.Drawing.Size(14, 15);
+			this.num_rows.TabIndex = 7;
+			this.num_rows.Text = "0";
 			// 
 			// openFileDialog1
 			// 
@@ -261,15 +258,15 @@
 		private System.Windows.Forms.RichTextBox richTextBox1;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		internal System.Windows.Forms.Label num_letters;
+		internal System.Windows.Forms.Label num_letters_no_space;
+		internal System.Windows.Forms.Label num_words;
+		internal System.Windows.Forms.Label num_rows;
 	}
 }
 

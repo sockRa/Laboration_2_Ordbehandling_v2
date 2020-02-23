@@ -28,6 +28,7 @@ namespace Laboration_2_Ordbehandling_v2
 
 		private void RichTextBox1_TextChanged(object sender, EventArgs e)
 		{
+			_dockHandler.UpdateInformationTable();
 			_dockHandler.MarkDocumentAsChanged();
 		}
 
