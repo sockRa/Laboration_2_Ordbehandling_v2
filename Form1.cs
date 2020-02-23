@@ -13,6 +13,7 @@ namespace Laboration_2_Ordbehandling_v2
 	public partial class Form1 : Form
 	{
 		private readonly DocumentHandler _dockHandler;
+		private bool _documentHaveBeenDropped;
 
 		public Form1()
 
@@ -28,6 +29,15 @@ namespace Laboration_2_Ordbehandling_v2
 
 		private void RichTextBox1_TextChanged(object sender, EventArgs e)
 		{
+			// Only allow update if the document have not been imported.
+			// This bool ensures that when the event is triggered, due to text change when importing files,
+			// it will not trigger the first time.
+			if (_documentHaveBeenDropped)
+			{
+				_documentHaveBeenDropped = false;
+				return;
+			}
+
 			_dockHandler.UpdateInformationTable();
 			_dockHandler.MarkDocumentAsChanged();
 		}
@@ -70,6 +80,8 @@ namespace Laboration_2_Ordbehandling_v2
 
 			//We only handle one drag and drop file
 			_dockHandler.RetrieveDropText(file[0]);
+
+			_documentHaveBeenDropped = true;
 		}
 	}
 }

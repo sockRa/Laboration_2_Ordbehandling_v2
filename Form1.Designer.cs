@@ -122,10 +122,9 @@
 			this.richTextBox1.Size = new System.Drawing.Size(443, 476);
 			this.richTextBox1.TabIndex = 1;
 			this.richTextBox1.Text = "";
-			this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
-			this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.RichTextBox1_DragEnter);
 			this.richTextBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.RichTextBox1_DragDrop);
-				
+			this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.RichTextBox1_DragEnter);
+			this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
 			// 
 			// flowLayoutPanel1
 			// 
@@ -149,15 +148,15 @@
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(63, 15);
+			this.label1.Size = new System.Drawing.Size(50, 15);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Bokstäver:";
+			this.label1.Text = "Tecken:";
 			// 
 			// num_letters
 			// 
 			this.num_letters.AutoSize = true;
 			this.num_letters.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.num_letters.Location = new System.Drawing.Point(72, 0);
+			this.num_letters.Location = new System.Drawing.Point(59, 0);
 			this.num_letters.Name = "num_letters";
 			this.num_letters.Size = new System.Drawing.Size(14, 15);
 			this.num_letters.TabIndex = 1;
@@ -167,17 +166,17 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(92, 0);
+			this.label3.Location = new System.Drawing.Point(79, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(134, 15);
+			this.label3.Size = new System.Drawing.Size(121, 15);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "Bokstäver (utan space):";
+			this.label3.Text = "Tecken (utan space):";
 			// 
 			// num_letters_no_space
 			// 
 			this.num_letters_no_space.AutoSize = true;
 			this.num_letters_no_space.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.num_letters_no_space.Location = new System.Drawing.Point(232, 0);
+			this.num_letters_no_space.Location = new System.Drawing.Point(206, 0);
 			this.num_letters_no_space.Name = "num_letters_no_space";
 			this.num_letters_no_space.Size = new System.Drawing.Size(14, 15);
 			this.num_letters_no_space.TabIndex = 3;
@@ -187,7 +186,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(252, 0);
+			this.label5.Location = new System.Drawing.Point(226, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(30, 15);
 			this.label5.TabIndex = 4;
@@ -197,7 +196,7 @@
 			// 
 			this.num_words.AutoSize = true;
 			this.num_words.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.num_words.Location = new System.Drawing.Point(288, 0);
+			this.num_words.Location = new System.Drawing.Point(262, 0);
 			this.num_words.Name = "num_words";
 			this.num_words.Size = new System.Drawing.Size(14, 15);
 			this.num_words.TabIndex = 5;
@@ -207,7 +206,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(308, 0);
+			this.label7.Location = new System.Drawing.Point(282, 0);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(44, 15);
 			this.label7.TabIndex = 6;
@@ -217,11 +216,11 @@
 			// 
 			this.num_rows.AutoSize = true;
 			this.num_rows.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.num_rows.Location = new System.Drawing.Point(358, 0);
+			this.num_rows.Location = new System.Drawing.Point(332, 0);
 			this.num_rows.Name = "num_rows";
 			this.num_rows.Size = new System.Drawing.Size(14, 15);
 			this.num_rows.TabIndex = 7;
-			this.num_rows.Text = "0";
+			this.num_rows.Text = "1";
 			// 
 			// openFileDialog1
 			// 

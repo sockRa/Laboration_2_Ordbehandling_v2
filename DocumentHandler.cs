@@ -271,6 +271,7 @@ namespace Laboration_2_Ordbehandling_v2
 					RichText.Text = documentText;
 					SetDocumentTitle(Path.GetFileName(filePath));
 					CurrentFilePath = filePath;
+					_importedDocument = true;
 					break;
 			}
 
