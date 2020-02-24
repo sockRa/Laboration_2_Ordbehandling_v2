@@ -289,8 +289,8 @@ namespace Laboration_2_Ordbehandling_v2
 			//Find the index where the cursor is located
 			var i = RichText.SelectionStart;
 			//Save everything after the selection in sub string.
-			var document = RichText.Text;
-			var subString = document.Substring(i);
+			var currentDocumentText = RichText.Text;
+			var subString = currentDocumentText.Substring(i);
 
 			//Set the text to everything from 0 to the cursor selection
 			RichText.Text = RichText.Text.Substring(0, i);
