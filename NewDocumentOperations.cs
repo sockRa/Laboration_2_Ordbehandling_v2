@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Laboration_2_Ordbehandling_v2
 {
-	internal class DocumentHandler
+	internal class NewDocumentOperations
 	{
 		private const string ProgramName = " - NotPad";
 		private const string DefaultDocumentName = "dok1.txt";
@@ -16,13 +12,14 @@ namespace Laboration_2_Ordbehandling_v2
 		private static bool _importedDocument;
 		private static bool SaveWereCanceled { get; set; }
 		private static bool DocumentNotSaved { get; set; }
+		public bool DocumentHaveBeenDropped;
 		private static OpenFileDialog _openDialog;
 		private static SaveFileDialog _saveDialog;
 		private static string CurrentFilePath { get; set; }
 		private RichTextBox RichText { get; }
 		private Form1 MainForm1 { get; }
 
-		public DocumentHandler(RichTextBox richTextBox1, Form1 form1)
+		public NewDocumentOperations(RichTextBox richTextBox1, Form1 form1)
 		{
 			RichText = richTextBox1;
 			MainForm1 = form1;
@@ -61,9 +58,10 @@ namespace Laboration_2_Ordbehandling_v2
 			if (_documentHaveBeenChanged) return;
 
 			//Get the title and append * upon it
-			var temp = MainForm1.Text.Split(' ')[0] + '*';
+			var documentName = MainForm1.Text;
+			documentName = documentName.Split(' ')[0] + '*';
 
-			MainForm1.Text = temp + ProgramName;
+			MainForm1.Text = documentName + ProgramName;
 			_documentHaveBeenChanged = true;
 		}
 
@@ -108,7 +106,7 @@ namespace Laboration_2_Ordbehandling_v2
 			if (DocumentNotSaved) return;
 
 			//Remove * from document name
-			SetDocumentTitle(CurrentFilePath);
+			if (CurrentFilePath != null) SetDocumentTitle(CurrentFilePath);
 			_documentHaveBeenChanged = false;
 		}
 
@@ -200,40 +198,49 @@ namespace Laboration_2_Ordbehandling_v2
 		{
 			if (RichText == null) return;
 
-			int word = 0, letter = 0, row = 1;
+			MainForm1.num_letters.Text = GetNumOfCharacters();
+			MainForm1.num_letters_no_space.Text = GetNumOfCharactersNoWhiteSpace();
+			MainForm1.num_rows.Text = GetNumRows();
+			MainForm1.num_words.Text = GetNumWords();
+		}
+
+		private string GetNumWords()
+		{
 			var newWord = true;
+			var word = 0;
 
 			foreach (var character in RichText.Text)
 			{
-				switch (character)
+				if (character == ' ')
 				{
-					case ' ':
-						//New word have been encountered.
-						newWord = true;
-						break;
-
-					case '\n':
-						//Row have been encountered
-						row++;
-						break;
-
-					default:
-						if (newWord)
-						{
-							word++;
-							newWord = false;
-						}
-
-						letter++;
-						break;
+					//New word encountered
+					newWord = true;
+				}
+				else
+				{
+					if (!newWord) continue;
+					word++;
+					newWord = false;
 				}
 			}
 
+			return word.ToString();
+		}
+
+		private string GetNumRows()
+		{
+			return RichText.Text.Split('\n').Length.ToString();
+		}
+
+		private string GetNumOfCharactersNoWhiteSpace()
+		{
+			return (RichText.Text.Length - RichText.Text.Split(' ').Length).ToString();
+		}
+
+		private string GetNumOfCharacters()
+		{
 			//It is assumed that space is a character
-			MainForm1.num_letters.Text = RichText.Text.Length.ToString();
-			MainForm1.num_letters_no_space.Text = letter.ToString();
-			MainForm1.num_rows.Text = row.ToString();
-			MainForm1.num_words.Text = word.ToString();
+			return RichText.Text.Length.ToString();
 		}
 
 		public void RetrieveDropText(string filePath)
@@ -247,36 +254,49 @@ namespace Laboration_2_Ordbehandling_v2
 					break;
 
 				case Keys.Shift:
-					//Find the index where the cursor is located
-					var i = RichText.SelectionStart;
-					//Save everything after the selection in sub string.
-					var subString = RichText.Text.Substring(i);
-
-					//Set the text to everything from 0 to the cursor selection
-					RichText.Text = RichText.Text.Substring(0, i);
-
-					//Stitch everything together
-					RichText.Text = documentText + subString;
+					AppendTextAtCursor(documentText);
 					break;
 
 				default:
-					if (_documentHaveBeenChanged)
-					{
-						SaveDocument();
-					}
-
-					//Abort if the save were canceled
-					if (SaveWereCanceled) return;
-
-					RichText.Text = documentText;
-					SetDocumentTitle(Path.GetFileName(filePath));
-					CurrentFilePath = filePath;
-					_importedDocument = true;
+					if (ReplaceText(filePath, documentText)) return;
 					break;
 			}
 
 			//Place cursor at the end of the file
 			RichText.SelectionStart = RichText.Text.Length;
+		}
+
+		private bool ReplaceText(string filePath, string documentText)
+		{
+			if (_documentHaveBeenChanged)
+			{
+				SaveDocument();
+			}
+
+			//Abort if the save were canceled
+			if (SaveWereCanceled) return true;
+
+			RichText.Text = documentText;
+			SetDocumentTitle(Path.GetFileName(filePath));
+			CurrentFilePath = filePath;
+			_importedDocument = true;
+			DocumentHaveBeenDropped = true;
+			return false;
+		}
+
+		private void AppendTextAtCursor(string documentText)
+		{
+			//Find the index where the cursor is located
+			var i = RichText.SelectionStart;
+			//Save everything after the selection in sub string.
+			var document = RichText.Text;
+			var subString = document.Substring(i);
+
+			//Set the text to everything from 0 to the cursor selection
+			RichText.Text = RichText.Text.Substring(0, i);
+
+			//Stitch everything together
+			RichText.Text += documentText + subString;
 		}
 	}
 }

@@ -137,9 +137,9 @@
 			this.flowLayoutPanel1.Controls.Add(this.label7);
 			this.flowLayoutPanel1.Controls.Add(this.num_rows);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 451);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 473);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(443, 50);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(443, 28);
 			this.flowLayoutPanel1.TabIndex = 2;
 			// 
 			// label1
