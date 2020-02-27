@@ -21,6 +21,7 @@ namespace Laboration_2_Ordbehandling_v2
 
 		private void RichTextBox1_TextChanged(object sender, EventArgs e)
 		{
+			_dockOperations.UpdateInformationTable();
 			// Only allow update if the document have not been imported.
 			// This bool ensures that when the event is triggered, due to text change when importing files,
 			// it will not trigger the first time.
@@ -30,7 +31,6 @@ namespace Laboration_2_Ordbehandling_v2
 				return;
 			}
 
-			_dockOperations.UpdateInformationTable();
 			_dockOperations.MarkDocumentAsChanged();
 		}
 

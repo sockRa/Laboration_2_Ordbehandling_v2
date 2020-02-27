@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Laboration_2_Ordbehandling_v2
@@ -10,14 +11,9 @@ namespace Laboration_2_Ordbehandling_v2
 		private const string DefaultDocumentName = "dok1.txt";
 		private static bool _documentHaveBeenChanged;
 		private static bool _importedDocument;
-		private static bool SaveWereCanceled { get; set; }
-		private static bool DocumentNotSaved { get; set; }
-		public bool DocumentHaveBeenDropped;
 		private static OpenFileDialog _openDialog;
 		private static SaveFileDialog _saveDialog;
-		private static string CurrentFilePath { get; set; }
-		private RichTextBox RichText { get; }
-		private Form1 MainForm1 { get; }
+		public bool DocumentHaveBeenDropped;
 
 		public NewDocumentOperations(RichTextBox richTextBox1, Form1 form1)
 		{
@@ -36,12 +32,15 @@ namespace Laboration_2_Ordbehandling_v2
 			_saveDialog.Filter = _openDialog.Filter;
 		}
 
+		private static bool SaveWereCanceled { get; set; }
+		private static bool DocumentNotSaved { get; set; }
+		private static string CurrentFilePath { get; set; }
+		private RichTextBox RichText { get; }
+		private Form1 MainForm1 { get; }
+
 		public void NewDocument()
 		{
-			if (_documentHaveBeenChanged)
-			{
-				SaveDocument();
-			}
+			if (_documentHaveBeenChanged) SaveDocument();
 
 			//Ensure that the document were saved.
 			if (SaveWereCanceled) return;
@@ -55,7 +54,8 @@ namespace Laboration_2_Ordbehandling_v2
 		public void MarkDocumentAsChanged()
 		{
 			// Append *, only if the document have not been changed already.
-			if (_documentHaveBeenChanged) return;
+			//if (_documentHaveBeenChanged) return;
+			if (MainForm1.Text.Contains('*')) return;
 
 			//Get the title and append * upon it
 			var documentName = MainForm1.Text;
@@ -118,6 +118,7 @@ namespace Laboration_2_Ordbehandling_v2
 					File.WriteAllText(_saveDialog.FileName, RichText.Text);
 					SaveWereCanceled = false;
 					DocumentNotSaved = false;
+					SetDocumentTitle(Path.GetFileName(_saveDialog.FileName));
 					break;
 
 				case DialogResult.Cancel:
@@ -128,10 +129,7 @@ namespace Laboration_2_Ordbehandling_v2
 
 		public void OpenDocument()
 		{
-			if (_documentHaveBeenChanged)
-			{
-				SaveDocument();
-			}
+			if (_documentHaveBeenChanged) SaveDocument();
 
 			//Return if the user canceled the save
 			if (SaveWereCanceled) return;
@@ -160,10 +158,7 @@ namespace Laboration_2_Ordbehandling_v2
 
 		public void CloseApplication()
 		{
-			if (_documentHaveBeenChanged)
-			{
-				SaveDocument();
-			}
+			if (_documentHaveBeenChanged) SaveDocument();
 
 			//Abort if the user canceled the save
 			if (SaveWereCanceled) return;
@@ -182,16 +177,10 @@ namespace Laboration_2_Ordbehandling_v2
 
 		public void ApplicationIsClosing(FormClosingEventArgs e)
 		{
-			if (_documentHaveBeenChanged)
-			{
-				SaveDocument();
-			}
+			if (_documentHaveBeenChanged) SaveDocument();
 
-			if (SaveWereCanceled)
-			{
-				// Abort if the user canceled the save.
-				e.Cancel = true;
-			}
+			// Abort if the user canceled the save.
+			if (SaveWereCanceled) e.Cancel = true;
 		}
 
 		public void UpdateInformationTable()
@@ -234,7 +223,22 @@ namespace Laboration_2_Ordbehandling_v2
 
 		private string GetNumOfCharactersNoWhiteSpace()
 		{
-			return (RichText.Text.Length - RichText.Text.Split(' ').Length).ToString();
+			int word = 0, space = 0;
+			if (RichText.Text.Length == 0) return "0";
+
+			foreach (var character in RichText.Text)
+			{
+				if (character == ' ')
+				{
+					space++;
+				}
+				else if (char.IsLetterOrDigit(character))
+				{
+					word++;
+				}
+			}
+
+			return (word - space).ToString();
 		}
 
 		private string GetNumOfCharacters()
@@ -268,10 +272,7 @@ namespace Laboration_2_Ordbehandling_v2
 
 		private bool ReplaceText(string filePath, string documentText)
 		{
-			if (_documentHaveBeenChanged)
-			{
-				SaveDocument();
-			}
+			if (_documentHaveBeenChanged) SaveDocument();
 
 			//Abort if the save were canceled
 			if (SaveWereCanceled) return true;

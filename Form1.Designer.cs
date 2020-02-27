@@ -128,6 +128,7 @@
 			// 
 			// flowLayoutPanel1
 			// 
+			this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
 			this.flowLayoutPanel1.Controls.Add(this.label1);
 			this.flowLayoutPanel1.Controls.Add(this.num_letters);
 			this.flowLayoutPanel1.Controls.Add(this.label3);
